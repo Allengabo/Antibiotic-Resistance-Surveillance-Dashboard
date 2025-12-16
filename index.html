@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Antibiotic Resistance Surveillance Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script> 
+</head>
+<body>
+
+    <header class="dashboard-header">
+        <h1>Antibiotic Resistance Surveillance (2024): MDRO Tracker</h1>
+    </header>
+
+    <div class="main-container">
+
+        <aside class="control-panel">
+            <h2>Filters</h2>
+            
+            <div class="filter-group">
+                <label for="specimen-filter">Specimen Type:</label>
+                <select id="specimen-filter"></select>
+            </div>
+
+            <div class="filter-group">
+                <label for="gender-filter">Gender:</label>
+                <select id="gender-filter"></select>
+            </div>
+
+            <div class="filter-group">
+                <label for="outcome-filter">Patient Outcome:</label>
+                <select id="outcome-filter"></select>
+            </div>
+
+            <button onclick="applyFilters()">Apply Filters</button>
+            <button onclick="resetFilters()">Reset</button>
+
+        </aside>
+
+        <main class="content-area">
+            
+            <section class="kpi-container">
+                <div class="kpi-card">
+                    <h3>Total Isolates Tested</h3>
+                    <p id="kpi-total">0</p>
+                </div>
+                <div class="kpi-card resistant-kpi">
+                    <h3>Overall Resistance Rate</h3>
+                    <p id="kpi-resistance-rate">0.00%</p>
+                </div>
+                <div class="kpi-card mdro-kpi">
+                    <h3>MDRO Isolates (KPC/OXA-48/NDM-1)</h3>
+                    <p id="kpi-mdro-count">0</p>
+                </div>
+            </section>
+
+            <section class="chart-row">
+                <div class="chart-section wide-chart">
+                    <h2>Antibiogram: Percent Resistance by Drug</h2>
+                    <div id="antibiogram-heatmap" class="chart-placeholder"></div>
+                </div>
+                
+                <div class="chart-section narrow-chart">
+                    <h2>Isolate Distribution by Specimen Type</h2>
+                    <div id="specimen-pie-chart" class="chart-placeholder"></div>
+                </div>
+            </section>
+            
+            <section class="chart-row">
+                <div class="chart-section narrow-chart">
+                    <h2>Resistance vs. Patient Outcome</h2>
+                    <div id="outcome-stacked-bar-chart" class="chart-placeholder"></div>
+                </div>
+
+                <div class="chart-section wide-chart">
+                    <h2>Patient Age Distribution by Outcome</h2>
+                    <div id="age-box-plot" class="chart-placeholder"></div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+    <footer class="dashboard-footer">
+        <p>Data Source: <a href="https://data.mendeley.com/datasets/h4byb28gcv/2" target="_blank" rel="noopener noreferrer">Mendeley Data (Antibiotic Resistance)</a></p>
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>
